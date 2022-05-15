@@ -14,53 +14,139 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   String phonenum = " ";
   TextEditingController myController = TextEditingController();
+  TextEditingController codecont = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(new FocusNode());
       },
       child: Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.black,
         body: Column(
           children: [
             Expanded(child: SizedBox()),
+            Text('Enter phone number',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: width * 0.07,
+                    fontFamily: 'RaleWay',
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.bold)),
+            SizedBox(
+              height: 100,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-              child: TextField(
-                controller: myController,
-                style: TextStyle(color: Colors.white, fontSize: 30),
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  prefixIcon: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 30, bottom: 10),
-                    child: Icon(
-                      Icons.phone_android_outlined,
-                      color: Colors.white,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 75,
+                    child: Flexible(
+                      child: TextField(
+                        controller: codecont,
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          labelText: 'code',
+                          labelStyle:
+                              TextStyle(color: Colors.white, fontSize: 15),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide: BorderSide(
+                              width: 2,
+                            ),
+                          ),
+                          hintMaxLines: 1,
+                          hintText: '+91',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  border: OutlineInputBorder(),
-                  hintMaxLines: 2,
-                  hintText:
-                      'Enter a phone number you want to contact through whatsapp without +91 or 0',
-                  hintStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
+                  Expanded(child: SizedBox()),
+                  SizedBox(
+                    width: width * 0.7,
+                    child: Flexible(
+                      child: TextField(
+                        controller: myController,
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          labelText: 'Phone no.',
+                          labelStyle:
+                              TextStyle(color: Colors.white, fontSize: 15),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide: BorderSide(
+                              width: 2,
+                            ),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.phone_android_outlined,
+                            color: Colors.white,
+                          ),
+                          hintMaxLines: 1,
+                          hintText: '0123456789',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
-            Expanded(child: SizedBox()),
+            SizedBox(
+              height: 100,
+            ),
             GestureDetector(
               onTap: () async {
-                 FocusScope.of(context).requestFocus(new FocusNode());
+                FocusScope.of(context).requestFocus(new FocusNode());
                 phonenum = await myController.text;
-                openwhatsapp(phonenum);
+                String code = await codecont.text;
+                openwhatsapp(phonenum, code);
               },
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Colors.black,
+                  color: Colors.white,
                   borderRadius: BorderRadius.all(
                     Radius.circular(15.0),
                   ),
@@ -69,7 +155,7 @@ class _HomescreenState extends State<Homescreen> {
                       offset: Offset(0, 0),
                       blurRadius: 2,
                       spreadRadius: 2,
-                      color: Colors.black26,
+                      color: Colors.white,
                     ),
                   ],
                 ),
@@ -77,9 +163,9 @@ class _HomescreenState extends State<Homescreen> {
                 width: 100,
                 child: Center(
                   child: Text(
-                    'OK',
+                    'Go',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 20,
                     ),
                   ),
@@ -93,8 +179,8 @@ class _HomescreenState extends State<Homescreen> {
     );
   }
 
-  openwhatsapp(String phone) async {
-    var whatsapp = "+91$phone";
+  openwhatsapp(String phone, String code) async {
+    var whatsapp = "$code" + "$phone";
     var whatsappURl_android =
         "whatsapp://send?phone=" + whatsapp + "&text=hello";
     var whatappURL_ios = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
