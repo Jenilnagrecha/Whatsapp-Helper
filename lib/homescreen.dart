@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:whatsapp_helper/about_devloper.dart';
 
 class Homescreen extends StatefulWidget {
   Homescreen({Key? key}) : super(key: key);
@@ -19,8 +20,10 @@ class _HomescreenState extends State<Homescreen> {
   TextEditingController myController = TextEditingController();
   TextEditingController codecont = TextEditingController();
   late BannerAd staticAd;
+  late BannerAd staticbottomAd;
   late Banner inlineAd;
   bool staticAdloaded = false;
+
   bool inlineAdloaded = false;
   static const AdRequest adrequest = AdRequest();
   void loadbannerAd() {
@@ -46,6 +49,7 @@ class _HomescreenState extends State<Homescreen> {
   @override
   void initState() {
     loadbannerAd();
+
     super.initState();
   }
 
@@ -87,46 +91,40 @@ class _HomescreenState extends State<Homescreen> {
                   children: [
                     SizedBox(
                       width: 75,
-                      child: Flexible(
-                        child: TextField(
-                          controller: codecont,
-                          style: TextStyle(color: Colors.white, fontSize: 25),
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                            labelText: 'code',
-                            labelStyle:
-                                TextStyle(color: Colors.white, fontSize: 15),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: 2, color: Colors.white),
+                      child: TextField(
+                        controller: codecont,
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          labelText: 'code',
+                          labelStyle:
+                              TextStyle(color: Colors.white, fontSize: 15),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide: BorderSide(
+                              width: 2,
                             ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: 2, color: Colors.white),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: 2, color: Colors.white),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide: BorderSide(
-                                width: 2,
-                              ),
-                            ),
-                            hintMaxLines: 1,
-                            hintText: '+91',
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 20,
-                            ),
+                          ),
+                          hintMaxLines: 1,
+                          hintText: '+91',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
                           ),
                         ),
                       ),
@@ -134,50 +132,44 @@ class _HomescreenState extends State<Homescreen> {
                     Expanded(child: SizedBox()),
                     SizedBox(
                       width: width * 0.7,
-                      child: Flexible(
-                        child: TextField(
-                          controller: myController,
-                          style: TextStyle(color: Colors.white, fontSize: 25),
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                            labelText: 'Phone no.',
-                            labelStyle:
-                                TextStyle(color: Colors.white, fontSize: 15),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: 2, color: Colors.white),
+                      child: TextField(
+                        controller: myController,
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          labelText: 'Phone no.',
+                          labelStyle:
+                              TextStyle(color: Colors.white, fontSize: 15),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.white),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide: BorderSide(
+                              width: 2,
                             ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: 2, color: Colors.white),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: 2, color: Colors.white),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide: BorderSide(
-                                width: 2,
-                              ),
-                            ),
-                            prefixIcon: Icon(
-                              Icons.phone_android_outlined,
-                              color: Colors.white,
-                            ),
-                            hintMaxLines: 1,
-                            hintText: '0123456789',
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 20,
-                            ),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.phone_android_outlined,
+                            color: Colors.white,
+                          ),
+                          hintMaxLines: 1,
+                          hintText: '0123456789',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
                           ),
                         ),
                       ),
@@ -225,6 +217,17 @@ class _HomescreenState extends State<Homescreen> {
               ),
               Expanded(child: SizedBox()),
             ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, About.id);
+          },
+          backgroundColor: Colors.white,
+          child: Icon(
+            Icons.person,
+            color: Colors.black,
+            size: 40,
           ),
         ),
       ),

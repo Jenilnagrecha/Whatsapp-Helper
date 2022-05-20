@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:whatsapp_helper/about_devloper.dart';
 import 'package:whatsapp_helper/homescreen.dart';
 
 void main() {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
-  runApp(const WhatsappHelper());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(new WhatsappHelper());
+  });
 }
 
 class WhatsappHelper extends StatelessWidget {
@@ -24,6 +29,7 @@ class WhatsappHelper extends StatelessWidget {
       home: Homescreen(),
       routes: {
         Homescreen.id: (context) => Homescreen(),
+        About.id: (context) => About(),
       },
     );
   }
