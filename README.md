@@ -1,5 +1,7 @@
 # whatsapp_helper
 
+A simple flutter application that can message WhatsApp contact directly without saving it initially.
+
 A new Flutter project.
 
 ## Getting Started
